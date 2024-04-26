@@ -7,11 +7,9 @@ const MIN_GRID_SIZE = 10;
 const MAX_GRID_SIZE = 50;
 
 let gridSize = MIN_GRID_SIZE;
-let tiles = false;
+let tiles = true;
 
 function toggleTiles() {
-  tiles = !tiles;
-
   if (tiles) {
     toggleTilesButton.style.backgroundColor = "hsl(317 100% 54%)";
     toggleTilesButton.style.color = "white";
@@ -29,7 +27,6 @@ function toggleTiles() {
 
 function initDrawingGrid() {
   let squareSize = DRAWING_GRID_WIDTH / gridSize;
-  console.log(squareSize);
 
   drawingGridDiv.innerHTML = "";
   for (let i = 0; i < gridSize; i++) {
@@ -39,7 +36,7 @@ function initDrawingGrid() {
       blankSquare.style.width = squareSize - 0.1 + "px";
       blankSquare.style.height = squareSize - 0.1 + "px";
       blankSquare.className = "tile";
-      blankSquare.style.borderRadius = "3px";
+      blankSquare.style.borderRadius = squareSize / 10 + "px";
 
       blankSquare.addEventListener(
         "mouseover",
@@ -52,6 +49,7 @@ function initDrawingGrid() {
       drawingGridDiv.appendChild(blankSquare);
     }
   }
+  toggleTiles();
 }
 
 function updateGridSize() {
@@ -63,4 +61,11 @@ sizeSlider.value = 0;
 initDrawingGrid();
 
 sizeSlider.addEventListener("input", updateGridSize, false);
-toggleTilesButton.addEventListener("click", toggleTiles, false);
+toggleTilesButton.addEventListener(
+  "click",
+  function () {
+    tiles = !tiles;
+    toggleTiles();
+  },
+  false
+);
