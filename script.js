@@ -1,6 +1,7 @@
 const drawingGridDiv = document.getElementById("drawing-grid");
 const sizeSlider = document.getElementById("grid-size-slider");
 const sizeLabel = document.getElementById("grid-size-label");
+const resetButton = document.getElementById("reset");
 const toggleTilesButton = document.getElementById("toggle-tiles");
 const DRAWING_GRID_WIDTH = parseInt(getComputedStyle(drawingGridDiv).width);
 const MIN_GRID_SIZE = 10;
@@ -57,15 +58,24 @@ function updateGridSize() {
   initDrawingGrid();
 }
 
-sizeSlider.value = 0;
-initDrawingGrid();
+function resetGrid() {
+  initDrawingGrid();
+}
 
-sizeSlider.addEventListener("input", updateGridSize, false);
-toggleTilesButton.addEventListener(
-  "click",
-  function () {
-    tiles = !tiles;
-    toggleTiles();
-  },
-  false
-);
+function main() {
+  sizeSlider.value = 0;
+  initDrawingGrid();
+
+  sizeSlider.addEventListener("input", updateGridSize, false);
+  toggleTilesButton.addEventListener(
+    "click",
+    function () {
+      tiles = !tiles;
+      toggleTiles();
+    },
+    false
+  );
+  resetButton.addEventListener("click", resetGrid, false);
+}
+
+main();
