@@ -111,6 +111,7 @@ main {
 .neon-button {
   font-size: 1.5rem;
   max-width: min-content;
+  background-color: white;
 
   display: inline-block;
   cursor: pointer;
@@ -141,17 +142,7 @@ main {
   transition: opacity 100ms linear;
 }
 
-.neon-button:hover,
-.neon-button:focus {
-  color: var(--clr-bg);
-  text-shadow: none;
-}
-
-.neon-button:hover::before,
-.neon-button:focus::before {
-  opacity: 1;
-}
-.neon-button:hover::after,
-.neon-button:focus::after {
-  opacity: 1;
+.neon-button:active {
+  background-color: var(--clr-neon);
+  color: white;
 }
