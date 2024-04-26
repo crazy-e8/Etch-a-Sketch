@@ -14,7 +14,33 @@
       </header>
 
       <main>
+        <div class="left-options">
+          <div class="slider-wrapper">
+            <label>Grid Size</label>
+            <input
+              type="range"
+              name="grid-size"
+              id="grid-size-slider"
+              value="10"
+              min="10"
+              max="50"
+              step="1" />
+            <label id="grid-size-label"></label>
+          </div>
+          <button class="option-btn neon-button" id="reset">RESET</button>
+        </div>
         <div id="drawing-grid"></div>
+        <div class="right-options">
+          <button class="option-btn neon-button" id="warm-colors">
+            Warm Colors
+          </button>
+          <button class="option-btn neon-button" id="cold-colors">
+            Cold Colors
+          </button>
+          <button class="option-btn neon-button" id="neon-colors">
+            Neon Colors
+          </button>
+        </div>
       </main>
     </div>
 
