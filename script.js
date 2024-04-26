@@ -1,14 +1,62 @@
 const drawingGridDiv = document.getElementById("drawing-grid");
 const sizeSlider = document.getElementById("grid-size-slider");
 const sizeLabel = document.getElementById("grid-size-label");
+const warmColorsButton = document.getElementById("warm-colors");
+const coldColorsButton = document.getElementById("cold-colors");
+const neonColorsButton = document.getElementById("neon-colors");
 const resetButton = document.getElementById("reset");
 const toggleTilesButton = document.getElementById("toggle-tiles");
 const DRAWING_GRID_WIDTH = parseInt(getComputedStyle(drawingGridDiv).width);
 const MIN_GRID_SIZE = 10;
 const MAX_GRID_SIZE = 50;
 
+const WARM_COLORS = [
+  "ede0d4",
+  "e6ccb2",
+  "ddb892",
+  "b08968",
+  "7f5539",
+  "9c6644",
+];
+
+const COLD_COLORS = [
+  "0466C8",
+  "0353A4",
+  "023E7D",
+  "002855",
+  "001845",
+  "001233",
+];
+
+const NEON_COLORS = [
+  "9b5de5",
+  "f15bb5",
+  "fee440",
+  "00bbf9",
+  "00f5d4",
+  "fb5607",
+];
+
 let gridSize = MIN_GRID_SIZE;
 let tiles = true;
+let warmColorsToggle = false;
+let coldColorsToggle = false;
+let neonColorsToggle = false;
+
+function drawColor() {
+  this.style.backgroundColor = "black";
+
+  if (warmColorsToggle) {
+    this.style.backgroundColor =
+      "#" + WARM_COLORS[Math.floor(Math.random() * WARM_COLORS.length)];
+  } else if (coldColorsToggle) {
+    this.style.backgroundColor =
+      "#" + COLD_COLORS[Math.floor(Math.random() * COLD_COLORS.length)];
+  } else if (neonColorsToggle) {
+    this.style.backgroundColor =
+      "#" + NEON_COLORS[Math.floor(Math.random() * NEON_COLORS.length)];
+  }
+}
 
 function toggleTiles() {
   if (tiles) {
@@ -39,13 +87,7 @@ function initDrawingGrid() {
       blankSquare.className = "tile";
       blankSquare.style.borderRadius = squareSize / 10 + "px";
 
-      blankSquare.addEventListener(
-        "mouseover",
-        function () {
-          this.style.backgroundColor = "black";
-        },
-        false
-      );
+      blankSquare.addEventListener("mouseover", drawColor, false);
 
       drawingGridDiv.appendChild(blankSquare);
     }
@@ -76,6 +118,36 @@ function main() {
     false
   );
   resetButton.addEventListener("click", resetGrid, false);
+  warmColorsButton.addEventListener(
+    "click",
+    function () {
+      warmColorsToggle = !warmColorsToggle;
+      coldColorsToggle = false;
+      neonColorsToggle = false;
+      drawColor();
+    },
+    false
+  );
+  coldColorsButton.addEventListener(
+    "click",
+    function () {
+      coldColorsToggle = !coldColorsToggle;
+      warmColorsToggle = false;
+      neonColorsToggle = false;
+      drawColor();
+    },
+    false
+  );
+  neonColorsButton.addEventListener(
+    "click",
+    function () {
+      neonColorsToggle = !neonColorsToggle;
+      warmColorsToggle = false;
+      coldColorsToggle = false;
+      drawColor();
+    },
+    false
+  );
 }
 
 main();
