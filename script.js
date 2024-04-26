@@ -15,11 +15,16 @@ function toggleTiles() {
   if (tiles) {
     toggleTilesButton.style.backgroundColor = "hsl(317 100% 54%)";
     toggleTilesButton.style.color = "white";
+    for (const divTile of drawingGridDiv.children) {
+      divTile.style.border = "1px solid lightgray";
+    }
   } else {
     toggleTilesButton.style.backgroundColor = "white";
     toggleTilesButton.style.color = "hsl(317 100% 54%)";
+    for (const divTile of drawingGridDiv.children) {
+      divTile.style.border = "";
+    }
   }
-  initDrawingGrid();
 }
 
 function initDrawingGrid() {
@@ -33,7 +38,17 @@ function initDrawingGrid() {
       blankSquare.style.backgroundColor = "white";
       blankSquare.style.width = squareSize - 0.1 + "px";
       blankSquare.style.height = squareSize - 0.1 + "px";
-      if (tiles) blankSquare.style.border = "1px solid lightgray";
+      blankSquare.className = "tile";
+      blankSquare.style.borderRadius = "3px";
+
+      blankSquare.addEventListener(
+        "mouseover",
+        function () {
+          this.style.backgroundColor = "black";
+        },
+        false
+      );
+
       drawingGridDiv.appendChild(blankSquare);
     }
   }
