@@ -17,7 +17,6 @@ function initDrawingGrid() {
       blankSquare.style.backgroundColor = "white";
       blankSquare.style.width = squareSize.toString() + "px";
       blankSquare.style.height = squareSize.toString() + "px";
-      blankSquare.style.border = "1px solid black";
       drawingGridDiv.appendChild(blankSquare);
     }
   }
@@ -25,7 +24,7 @@ function initDrawingGrid() {
 
 function updateGridSize() {
   gridSize = parseInt(this.value);
-  console.log(gridSize);
+  console.log(this.value);
   initDrawingGrid();
 }
 
